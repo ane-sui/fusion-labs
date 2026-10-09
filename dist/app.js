@@ -1,3 +1,25 @@
+// Tall cards scroll through completely before their bottom settles into the stack.
+// Native sticky positioning still works if the animation library does not load.
+const stackCards = [...document.querySelectorAll('.offer-card')];
+let stackFrame;
+function updateStackOffsets() {
+  cancelAnimationFrame(stackFrame);
+  stackFrame = requestAnimationFrame(() => {
+    const offsets = stackCards.map((card, index) =>
+      Math.min(24 + index * 14, window.innerHeight - card.offsetHeight - 24)
+    );
+    stackCards.forEach((card, index) => card.style.setProperty('--stack-top', `${offsets[index]}px`));
+    window.ScrollTrigger?.refresh();
+  });
+}
+updateStackOffsets();
+window.addEventListener('resize', updateStackOffsets, { passive: true });
+if ('ResizeObserver' in window) {
+  const stackObserver = new ResizeObserver(updateStackOffsets);
+  stackCards.forEach(card => stackObserver.observe(card));
+}
+document.fonts?.ready.then(updateStackOffsets);
+
 document.querySelectorAll('[data-enquire]').forEach(link => {
   link.addEventListener('click', () => {
     document.getElementById('project-service').value = link.dataset.enquire;

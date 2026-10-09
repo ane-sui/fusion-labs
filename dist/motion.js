@@ -10,10 +10,9 @@
   media.add({
     desktop: '(min-width: 768px)',
     mobile: '(max-width: 767px)',
-    stack: '(min-width:900px) and (min-height:760px)',
     reduced: '(prefers-reduced-motion: reduce)'
   }, context => {
-    const { desktop, reduced, stack } = context.conditions;
+    const { desktop, reduced } = context.conditions;
     const distance = desktop ? 28 : 14;
     const intro = gsap.timeline({ defaults: { ease: 'expo.out' } });
 
@@ -59,25 +58,14 @@
       });
     }
 
-    if (stack && !reduced) {
+    if (!reduced) {
       const cards = gsap.utils.toArray('.offer-card');
-      const container = document.querySelector('.service-stack');
-      const checkFit = () => container.classList.toggle('stack-fit', cards.every(card => card.offsetHeight <= window.innerHeight - 120));
-      checkFit();
-      window.addEventListener('resize', checkFit);
-      const observer = new ResizeObserver(checkFit);
-      cards.forEach(card => observer.observe(card));
       cards.slice(0, -1).forEach((card, index) => {
         gsap.to(card, {
-          scale: 0.97, ease: 'none',
-          scrollTrigger: {trigger: cards[index + 1], start: 'top 80%', end: 'top 120px', scrub: 0.4, invalidateOnRefresh: true}
+          scale: desktop ? 0.97 : 0.985, ease: 'none',
+          scrollTrigger: {trigger: cards[index + 1], start: 'top 85%', end: () => 'top ' + Math.max(48, window.innerHeight * 0.2) + 'px', scrub: 0.4, invalidateOnRefresh: true}
         });
       });
-      return () => {
-        window.removeEventListener('resize', checkFit);
-        observer.disconnect();
-        container.classList.remove('stack-fit');
-      };
     }
   });
 

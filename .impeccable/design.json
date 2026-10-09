@@ -338,11 +338,14 @@
     "idleLoops": false,
     "reducedMotion": "No spatial motion; cards remain in document flow",
     "cardStack": {
-      "scale": 0.97,
+      "desktopScale": 0.97,
+      "mobileScale": 0.985,
       "scrub": 0.4,
-      "minimumWidth": 900,
-      "minimumHeight": 760,
-      "requiresFit": true
+      "nativeSticky": true,
+      "minimumWidth": 0,
+      "minimumHeight": 0,
+      "offset": "min(24 + index * 14, viewportHeight - cardHeight - 24)",
+      "reducedMotion": "normal flow"
     }
   }
 }

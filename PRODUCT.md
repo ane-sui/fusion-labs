@@ -12,3 +12,6 @@ Fusion Labs. Email: info@fusionlabs.co.zw. Supplied blue and black service refer
 Responsive marketing website, stackable service cards with Unsplash imagery, email project enquiry. No supplied client work or performance claims.
 ## Stack
 Portable static HTML, CSS and JavaScript; no existing codebase.
+
+## Pricing
+User requested USD sample prices informed by the Zimbabwean market. Prices displayed as estimates, subject to confirmed scope. See PRICING.md for samples and benchmarks.

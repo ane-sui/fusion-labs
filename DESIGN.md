@@ -126,7 +126,7 @@ Primary enquiry actions use cobalt and white. The alternate action uses paper an
 
 ### Stacked service cards
 
-Four image-led cards group nine services. Each has a photo, heading, description and direct enquiry links. The enquiry link selects the matching contact form option. Cards use 14px corners and slate/cobalt surfaces. At widths of at least 900px and heights of at least 760px, fitting cards stack with sticky offsets of 28px + 20px per card. ScrollTrigger scales the outgoing card to 0.97. Too-tall cards, keyboard focus, reduced motion and smaller viewports use ordinary document flow. Mobile images are 210px high above their content. Unsplash assets are local, lazy-loaded, credited and carry embedded source provenance.
+Four image-led cards group nine services. Each has a photo, heading, description and direct enquiry links. The enquiry link selects the matching contact form option. Cards use 14px corners and slate/cobalt surfaces. Cards use native sticky positioning on all viewport sizes, independently of GSAP. Each sticky top offset is the smaller of 24px + 14px per card and viewport height minus card height minus 24px, so tall cards can scroll fully before stacking. ScrollTrigger scales outgoing cards to 0.97 on desktop and 0.985 on mobile. Keyboard focus and reduced motion use ordinary document flow. Mobile images are 210px high above their content. Sample USD starting prices appear on all nine service links, with project/month/design billing labels and an estimate disclaimer. Unsplash assets are local, lazy-loaded, credited and carry embedded source provenance.
 
 ### Inputs
 

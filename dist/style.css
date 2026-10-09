@@ -8,8 +8,8 @@
 .strip-star{width:14px;height:14px;flex-shrink:0;stroke:#748dff;stroke-width:2;fill:none}
 
 /* Stacked service chapters: sticky only where there is room to read. */
-.service-stack{display:grid;gap:28px;isolation:isolate}
-.offer-card{display:grid;grid-template-columns:.85fr 1.15fr;min-height:490px;border-radius:14px;overflow:clip;background:#1c1f29;transform-origin:50% 0;position:relative}
+.service-stack{display:grid;align-items:start;gap:40px;isolation:isolate;padding-bottom:60px}
+.offer-card{display:grid;grid-template-columns:.85fr 1.15fr;min-height:490px;border-radius:14px;overflow:clip;background:#1c1f29;transform-origin:50% 0;position:sticky;top:var(--stack-top,24px);z-index:calc(1 + var(--card-index))}
 .offer-image{margin:0;position:relative;min-height:100%;background:#2b3040}
 .offer-image img{display:block;position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .offer-image-network img{object-position:70% 50%;filter:saturate(.65)}
@@ -29,12 +29,19 @@
 .offer-graphic .offer-content>p,.offer-graphic .offer-services li>p{color:#e4eaff}
 .offer-graphic .offer-services li{border-color:#8b9fff}
 .offer-graphic .offer-caption,.offer-graphic .enquire-plus{color:#dce4ff}
-@media(min-width:900px) and (min-height:760px) and (prefers-reduced-motion:no-preference){
-.service-stack{gap:54px;padding-bottom:24px}
-.service-stack.stack-fit .offer-card{position:sticky;top:calc(28px + var(--card-index)*20px);z-index:calc(1 + var(--card-index))}
-.service-stack:has(:focus-visible) .offer-card{position:relative;top:auto;transform:none!important}
-}
+
 @media(max-width:899px){.offer-card{min-height:450px;grid-template-columns:.75fr 1.25fr}.offer-content{padding:30px}.offer-content h3{font-size:29px}}
 @media(max-width:640px){.service-stack{gap:24px}.offer-card{display:flex;flex-direction:column;min-height:0}.offer-image{min-height:0;height:210px;flex-shrink:0}.offer-content{padding:26px 22px 30px}.offer-content h3{font-size:29px}.offer-content>p{font-size:15px}.offer-services a{font-size:15px;min-height:48px}.offer-image figcaption{font-size:12px;bottom:10px;left:10px}.offer-content .offer-caption{line-height:1.7}}
 
-.service-stack:not(.stack-fit) .offer-card{transform:none!important}
+
+
+/* Sticky positioning is independent of GSAP and available at every viewport. */
+.pricing-note{max-width:80ch;margin:-22px 0 34px;color:#c1c7d8;font-size:14px;line-height:1.7}
+.offer-services a{display:grid;grid-template-columns:minmax(0,1fr) auto 16px;gap:14px}
+.service-price{white-space:nowrap;font-size:13px;color:#c1c7d8;text-align:right}
+.service-price strong{font-size:18px;font-weight:700;color:#f3f4f5;font-variant-numeric:tabular-nums}
+.service-price small{font-size:12px}
+.offer-graphic .service-price{color:#e4eaff}
+.service-stack:has(:focus-visible) .offer-card{position:relative;top:auto;transform:none!important}
+@media(max-width:640px){.pricing-note{margin:-10px 0 25px}.offer-services a{grid-template-columns:minmax(0,1fr) auto;gap:6px 12px}.offer-services a>span:first-child{grid-column:1}.service-price{grid-column:2;grid-row:1;font-size:12px}.service-price strong{font-size:17px}.service-price small{display:block}.offer-services .enquire-plus{display:none}.service-stack{padding-bottom:40px;gap:30px}}
+@media(prefers-reduced-motion:reduce){.offer-card{position:relative;top:auto;transform:none!important}}
