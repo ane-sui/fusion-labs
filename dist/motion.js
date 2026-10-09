@@ -5,15 +5,15 @@
   if (!gsap || !ScrollTrigger) return;
   gsap.registerPlugin(ScrollTrigger);
   const media = gsap.matchMedia();
-  const panelParts = ['#panel-title', '#panel-copy', '#panel-tags', '#panel-cta'];
-  let serviceTween;
+
 
   media.add({
     desktop: '(min-width: 768px)',
     mobile: '(max-width: 767px)',
+    stack: '(min-width:900px) and (min-height:760px)',
     reduced: '(prefers-reduced-motion: reduce)'
   }, context => {
-    const { desktop, reduced } = context.conditions;
+    const { desktop, reduced, stack } = context.conditions;
     const distance = desktop ? 28 : 14;
     const intro = gsap.timeline({ defaults: { ease: 'expo.out' } });
 
@@ -59,23 +59,26 @@
       });
     }
 
-    const changeService = () => {
-      serviceTween?.kill();
-      gsap.set(panelParts, { clearProps: 'transform,opacity' });
-      // Reduced motion preserves the change acknowledgement without displacement.
-      serviceTween = gsap.fromTo(panelParts,
-        { x: reduced ? 0 : 10, opacity: reduced ? 0.85 : 0.6 },
-        { x: 0, opacity: 1, duration: reduced ? 0.12 : 0.3,
-          stagger: reduced ? 0 : 0.025, ease: 'expo.out',
-          clearProps: 'transform,opacity', overwrite: true }
-      );
-    };
-    document.addEventListener('fusion:service-change', changeService);
-    return () => {
-      document.removeEventListener('fusion:service-change', changeService);
-      serviceTween?.kill();
-      gsap.set(panelParts, { clearProps: 'transform,opacity' });
-    };
+    if (stack && !reduced) {
+      const cards = gsap.utils.toArray('.offer-card');
+      const container = document.querySelector('.service-stack');
+      const checkFit = () => container.classList.toggle('stack-fit', cards.every(card => card.offsetHeight <= window.innerHeight - 120));
+      checkFit();
+      window.addEventListener('resize', checkFit);
+      const observer = new ResizeObserver(checkFit);
+      cards.forEach(card => observer.observe(card));
+      cards.slice(0, -1).forEach((card, index) => {
+        gsap.to(card, {
+          scale: 0.97, ease: 'none',
+          scrollTrigger: {trigger: cards[index + 1], start: 'top 80%', end: 'top 120px', scrub: 0.4, invalidateOnRefresh: true}
+        });
+      });
+      return () => {
+        window.removeEventListener('resize', checkFit);
+        observer.disconnect();
+        container.classList.remove('stack-fit');
+      };
+    }
   });
 
   // Font metrics can affect scroll positions. Refresh without delaying the page.

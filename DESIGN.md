@@ -124,9 +124,9 @@ Controls have gently rounded corners. The main surface and service panel share a
 
 Primary enquiry actions use cobalt and white. The alternate action uses paper and ink. Both use bold 14px text with separated icon space. Background transitions last 0.2s. Primary hover changes to #3b5fff; alternate hover changes to #d8e1ff.
 
-### Service index and panel
+### Stacked service cards
 
-Full-width text buttons form a vertical tablist. Active text and arrows turn light blue. Keyboard behavior supports Up, Down, Home and End. The panel uses a single slate surface, geometric SVG, heading, copy, outlined deliverable tags and underlined enquiry link.
+Four image-led cards group nine services. Each has a photo, heading, description and direct enquiry links. The enquiry link selects the matching contact form option. Cards use 14px corners and slate/cobalt surfaces. At widths of at least 900px and heights of at least 760px, fitting cards stack with sticky offsets of 28px + 20px per card. ScrollTrigger scales the outgoing card to 0.97. Too-tall cards, keyboard focus, reduced motion and smaller viewports use ordinary document flow. Mobile images are 210px high above their content. Unsplash assets are local, lazy-loaded, credited and carry embedded source provenance.
 
 ### Inputs
 
@@ -138,7 +138,7 @@ Navigation uses quiet 14px links that brighten on hover. FAQs use native details
 
 ### Motion and browser surfaces
 
-Self-hosted GSAP 3.14.2 and ScrollTrigger coordinate a short hero assembly (0.5–1s, expo.out), once-only scroll reveals, a scroll-linked studio mark and interruptible service transitions (0.3s). Mobile travel distances are smaller. Reduced motion removes entrances and scroll effects while preserving a 0.12s opacity acknowledgement for service selection. No idle animation loops. Content is readable without scripts. Selection and WebKit scrollbar colors are themed.
+Self-hosted GSAP 3.14.2 and ScrollTrigger coordinate a short hero assembly (0.5–1s, expo.out), once-only scroll reveals, a scroll-linked studio mark and scroll-linked stacked-card scaling. Mobile travel distances are smaller. Reduced motion removes entrances and scroll effects and uses static cards in document flow. No idle animation loops. Content is readable without scripts. Selection and WebKit scrollbar colors are themed.
 
 ## Do's and Don'ts
 

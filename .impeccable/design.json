@@ -334,10 +334,15 @@
     "library": "GSAP 3.14.2 + ScrollTrigger",
     "heroDuration": "0.5–1s",
     "ease": "expo.out",
-    "serviceDuration": "0.3s",
-    "reducedServiceDuration": "0.12s",
     "scrollReveals": "once",
     "idleLoops": false,
-    "reducedMotion": "No spatial entrances or scroll effects; brief opacity feedback only"
+    "reducedMotion": "No spatial motion; cards remain in document flow",
+    "cardStack": {
+      "scale": 0.97,
+      "scrub": 0.4,
+      "minimumWidth": 900,
+      "minimumHeight": 760,
+      "requiresFit": true
+    }
   }
 }
