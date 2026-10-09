@@ -138,7 +138,7 @@ Navigation uses quiet 14px links that brighten on hover. FAQs use native details
 
 ### Motion and browser surfaces
 
-One geometric asterisk rotates over 24 seconds. Reduced-motion disables animation, transitions and smooth scrolling. Selection and WebKit scrollbar colors are themed.
+Self-hosted GSAP 3.14.2 and ScrollTrigger coordinate a short hero assembly (0.5–1s, expo.out), once-only scroll reveals, a scroll-linked studio mark and interruptible service transitions (0.3s). Mobile travel distances are smaller. Reduced motion removes entrances and scroll effects while preserving a 0.12s opacity acknowledgement for service selection. No idle animation loops. Content is readable without scripts. Selection and WebKit scrollbar colors are themed.
 
 ## Do's and Don'ts
 

@@ -16,6 +16,7 @@ function selectService(tab, focus = false) {
   const tags = document.getElementById('panel-tags');tags.replaceChildren(...service.tags.map(text=>{const li=document.createElement('li');li.textContent=text;return li;}));
   document.getElementById('panel-cta').textContent = service.cta;
   document.getElementById('project-service').value = service.label;
+  document.dispatchEvent(new CustomEvent('fusion:service-change'));
   if(focus) tab.focus();
 }
 tabs.forEach((tab,index) => {tab.addEventListener('click',()=>selectService(tab));tab.addEventListener('keydown',event=>{let next;if(event.key==='ArrowDown')next=(index+1)%tabs.length;if(event.key==='ArrowUp')next=(index-1+tabs.length)%tabs.length;if(event.key==='Home')next=0;if(event.key==='End')next=tabs.length-1;if(next!==undefined){event.preventDefault();selectService(tabs[next],true);}});});
