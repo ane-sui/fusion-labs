@@ -1,5 +1,12 @@
+# Local tooling and secrets
 .sites-runtime/
-.impeccable/review/
-*.tar.gz
-
-debug.log
+.openai/
+.impeccable/
+.vercel/
+node_modules/
+.env
+.env.*
+!.env.example
+*.log
+.DS_Store
+Thumbs.db
